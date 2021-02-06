@@ -14,6 +14,7 @@ xhr.onreadystatechange = function () {
     console.log(xhr.responseText);
     let str = xhr.responseText;
     let obj = JSON.parse(str);
+    output.innerHTML = obj.value + "<br>" + `<img src=${obj.icon_url}>`;
     console.log(obj);
   }
 };
