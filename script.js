@@ -4,19 +4,18 @@ let btn = document.querySelector("button");
 
 btn.addEventListener("click", getJoke);
 
-function getJoke() {}
-
-let xhr = new XMLHttpRequest();
-let url = "https://api.chucknorris.io/jokes/random";
-xhr.onreadystatechange = function () {
-  console.log(xhr.readyState);
-  if (xhr.readyState === 4 && xhr.status === 200) {
-    console.log(xhr.responseText);
-    let str = xhr.responseText;
-    let obj = JSON.parse(str);
-    output.innerHTML = obj.value + "<br>" + `<img src=${obj.icon_url}>`;
-    console.log(obj);
-  }
-};
-xhr.open("GET", url);
-xhr.send();
+function getJoke() {
+  console.log("New joke coming");
+  const xhr = new XMLHttpRequest();
+  const url = "https://api.chucknorris.io/jokes/random";
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      const obj = JSON.parse(xhr.responseText);
+      output.innerHTML = obj.value + "<br>" + `<img src=${obj.icon_url}>`;
+    } else {
+      output.innerHTML = "ERROR";
+    }
+  };
+  xhr.open("GET", url);
+  xhr.send();
+}
